@@ -85,16 +85,11 @@ class AppointmentResource extends Resource
                         Forms\Components\DatePicker::make('date')
                             ->translateLabel()
                             ->required(),
-                        Forms\Components\TextInput::make('hour')
+                        Forms\Components\TimePicker::make('hour')
                             ->translateLabel()
                             ->required(),
                     ]),
-                Forms\Components\TextInput::make('state')
-                    ->required()
-                    ->translateLabel()
-                    ->default('En proceso')
-                    ->visible(false)
-                    ->maxLength(20),
+
             ]);
     }
 
