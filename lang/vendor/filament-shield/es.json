@@ -63,5 +63,7 @@
     "Type attention id":"Procedimiento",
     "Hour":"Hora",
     "State":"Estado",
-    "Patient":"Paciente"
+    "Patient":"Paciente",
+    "C m p":"CMP",
+    "R n e":"RNE"
 }

@@ -26,4 +26,9 @@ class Appointment extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
+    public function attentions()
+    {
+        return $this->hasMany(Attention::class);
+    }
 }
