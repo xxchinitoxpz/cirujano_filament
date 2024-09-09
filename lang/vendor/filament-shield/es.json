@@ -65,5 +65,11 @@
     "State":"Estado",
     "Patient":"Paciente",
     "C m p":"CMP",
-    "R n e":"RNE"
+    "R n e":"RNE",
+    "Antecedent":"Antecedentes",
+    "Symptoms":"Signos y sintomas",
+    "Age":"Edad",
+    "Diagnosis":"Diagnostico",
+    "Treatment":"Tratamiento",
+    "Inconvenience":"Molestias"
 }

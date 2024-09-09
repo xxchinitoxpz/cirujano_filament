@@ -36,4 +36,9 @@ class Attention extends Model
     {
         return $this->belongsTo(Doctor::class);
     }
+
+    public function patientExams()
+    {
+        return $this->hasMany(PatientExam::class, 'attention_id');
+    }
 }

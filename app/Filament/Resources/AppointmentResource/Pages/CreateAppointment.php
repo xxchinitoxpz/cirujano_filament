@@ -13,7 +13,7 @@ class CreateAppointment extends CreateRecord
     {
 
         $data['state'] = 'En proceso';
-        dd($data);
+        //dd($data);
 
         return $data;
     }
