@@ -41,4 +41,9 @@ class Attention extends Model
     {
         return $this->hasMany(PatientExam::class, 'attention_id');
     }
+
+    public function auxiliaryExams()
+    {
+        return $this->hasMany(AuxiliaryExam::class, 'attention_id');
+    }
 }

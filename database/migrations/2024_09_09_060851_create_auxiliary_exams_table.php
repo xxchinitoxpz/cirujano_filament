@@ -38,6 +38,14 @@ return new class extends Migration
             $table->boolean('EL_HDL');
             $table->boolean('EL_LDL');
 
+            $table->boolean('EL_perfil_tiroideo_completo');
+            $table->boolean('EL_TSH');
+            $table->boolean('EL_T3');
+            $table->boolean('EL_T3_total');
+            $table->boolean('EL_T3_libre');
+            $table->boolean('EL_triyodotironina');
+            $table->boolean('EL_examen_completo_orina');
+
             // Exámenes radiológicos (RPO, R)
             $table->boolean('RPO_hemograma_completo');
             $table->boolean('RPO_TC_TS');
@@ -54,16 +62,16 @@ return new class extends Migration
             $table->boolean('R_radiografia_simple_abdomen_pie_decubito');
             $table->boolean('R_radiografia_contraste_abdomen');
             $table->boolean('R_radiografia_doble_contraste_abdomen');
-            $table->string('R_otras', 255);
+            $table->string('R_otras')->nullable();
 
             // Exámenes de ultrasonido (U)
             $table->boolean('U_ecografia_abdomen_superior');
             $table->boolean('U_ecografia_abdomen_inferior');
             $table->boolean('U_ecografia_partes_blandas_pared_abdominal_anterior');
-            $table->boolean('U_ecografia_partes_blandas_especificar');
+            $table->string('U_ecografia_partes_blandas_especificar')->nullable();
             $table->boolean('U_region_inguinal_derecha');
             $table->boolean('U_region_inguinal_izquierda');
-            $table->boolean('U_otras');
+            $table->string('U_otras')->nullable();
             $table->boolean('U_ecofast');
 
             // Tomografías (TAC)
@@ -71,11 +79,11 @@ return new class extends Migration
             $table->boolean('TAC_abdomen_superior_CC');
             $table->boolean('TAC_toraco_abdominal_SC');
             $table->boolean('TAC_toraco_abdominal_CC');
-            $table->boolean('TAC_otras');
+            $table->string('TAC_otras')->nullable();
 
             // Resonancia magnética (RNM)
             $table->boolean('RNM_colangioresonancia');
-            $table->boolean('RNM_otras');
+            $table->string('RNM_otras')->nullable();
             $table->boolean('RNM_riesgo_cardiologico');
             $table->boolean('RNM_riesgo_neumologico');
 

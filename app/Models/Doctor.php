@@ -26,4 +26,9 @@ class Doctor extends Model
     {
         return $this->hasMany(Attention::class);
     }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }

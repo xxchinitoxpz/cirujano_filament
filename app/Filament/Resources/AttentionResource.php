@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttentionResource\Pages;
 use App\Filament\Resources\AttentionResource\RelationManagers;
+use App\Filament\Resources\AttentionResource\RelationManagers\AuxiliaryExamsRelationManager;
 use App\Filament\Resources\AttentionResource\RelationManagers\PatientExamsRelationManager;
 use App\Models\Appointment;
 use App\Models\Attention;
@@ -239,7 +240,8 @@ class AttentionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            PatientExamsRelationManager::class
+            PatientExamsRelationManager::class,
+            AuxiliaryExamsRelationManager::class
         ];
     }
 
