@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\AttentionResource\RelationManagers;
 
+use App\Models\AuxiliaryExam;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -243,6 +244,10 @@ class AuxiliaryExamsRelationManager extends RelationManager
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('downloadPdf')
+                    ->label('Descargar PDF')
+                    ->url(fn (AuxiliaryExam $record) => route('auxiliary.exam.pdf', ['id' => $record->id])) // URL para descargar el PDF
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

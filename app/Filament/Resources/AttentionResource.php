@@ -229,6 +229,11 @@ class AttentionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('downloadPdf')
+                    ->label('Descargar PDF')
+                    ->url(fn(Attention $record) => route('attention.pdf', ['id' => $record->id]))
+                    ->openUrlInNewTab(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -18,77 +18,107 @@ class ReportResource extends Resource
     protected static ?string $model = Report::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Informes';
+    protected static ?string $modelLabel = 'informe';
+    protected static ?string $navigationGroup = 'Gestion de informes';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('patient')
-                    ->required()
-                    ->maxLength(200),
-                Forms\Components\TextInput::make('hc_nr')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('dni')
-                    ->required()
-                    ->maxLength(9),
-                Forms\Components\TextInput::make('edad')
-                    ->required()
-                    ->maxLength(3),
-                Forms\Components\TextInput::make('sexo')
-                    ->required()
-                    ->maxLength(1),
-                Forms\Components\TextInput::make('modalidad_atencion')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\DateTimePicker::make('fecha_hora_ingreso'),
-                Forms\Components\DateTimePicker::make('fecha_hora_egreso'),
-                Forms\Components\TextInput::make('resumen_hc')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('diagnostico_1')
-                    ->required()
-                    ->maxLength(200),
-                Forms\Components\TextInput::make('cie10_1')
-                    ->required()
-                    ->maxLength(200),
-                Forms\Components\TextInput::make('diagnostico_2')
-                    ->maxLength(200)
-                    ->default(null),
-                Forms\Components\TextInput::make('cie10_2')
-                    ->maxLength(200)
-                    ->default(null),
-                Forms\Components\TextInput::make('diagnostico_3')
-                    ->maxLength(200)
-                    ->default(null),
-                Forms\Components\TextInput::make('cie10_3')
-                    ->maxLength(200)
-                    ->default(null),
-                Forms\Components\TextInput::make('diagnostico_4')
-                    ->maxLength(200)
-                    ->default(null),
-                Forms\Components\TextInput::make('cie10_4')
-                    ->maxLength(200)
-                    ->default(null),
-                Forms\Components\TextInput::make('tratamiento')
-                    ->required()
-                    ->maxLength(10),
-                Forms\Components\TextInput::make('tratamiento_desc')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('evolucion')
-                    ->required()
-                    ->maxLength(100),
-                Forms\Components\TextInput::make('evolucion_desc')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('fecha_hora_alta'),
-                Forms\Components\TextInput::make('observaciones')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('doctor_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Section::make('Informacion del paciente')
+                    ->columns(4)
+                    ->description('')
+                    ->schema([
+                        Forms\Components\TextInput::make('patient')
+                            ->required()
+                            ->label('Paciente')
+                            ->columnSpan(3)
+                            ->maxLength(200),
+                        Forms\Components\TextInput::make('hc_nr')
+                            ->required()
+                            ->label('HC N°')
+                            ->maxLength(100),
+                        Forms\Components\TextInput::make('dni')
+                            ->required()
+                            ->label('DNI')
+                            ->columnSpan(2)
+                            ->maxLength(9),
+                        Forms\Components\TextInput::make('edad')
+                            ->required()
+                            ->maxLength(3),
+                        Forms\Components\Select::make('sexo')
+                            ->required(),
+                    ]),
+
+                Forms\Components\Section::make('Informacion del reporte')
+                    ->columns(3)
+                    ->description('')
+                    ->schema([
+                        Forms\Components\Select::make('modalidad_atencion')
+                            ->required(),
+                        Forms\Components\DateTimePicker::make('fecha_hora_ingreso')
+                            ->required(),
+                        Forms\Components\DateTimePicker::make('fecha_hora_egreso')
+                            ->required(),
+                        Forms\Components\TextArea::make('resumen_hc')
+                            ->columnSpanFull()
+                            ->label('Resumen HC')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('diagnostico_1')
+                            ->required()
+                            ->columnSpan(2)
+                            ->maxLength(200),
+                        Forms\Components\TextInput::make('cie10_1')
+                            ->required()
+                            ->maxLength(200),
+                        Forms\Components\TextInput::make('diagnostico_2')
+                            ->maxLength(200)
+                            ->columnSpan(2)
+                            ->default(null),
+                        Forms\Components\TextInput::make('cie10_2')
+                            ->maxLength(200)
+                            ->default(null),
+                        Forms\Components\TextInput::make('diagnostico_3')
+                            ->maxLength(200)
+                            ->columnSpan(2)
+                            ->default(null),
+                        Forms\Components\TextInput::make('cie10_3')
+                            ->maxLength(200)
+                            ->default(null),
+                        Forms\Components\TextInput::make('diagnostico_4')
+                            ->maxLength(200)
+                            ->columnSpan(2)
+                            ->default(null),
+                        Forms\Components\TextInput::make('cie10_4')
+                            ->maxLength(200)
+                            ->default(null),
+                        Forms\Components\Select::make('tratamiento')
+                            ->required()
+                            ->columnSpan(1),
+                        Forms\Components\TextArea::make('tratamiento_desc')
+                            ->required()
+                            ->label('Tratamiento descripción')
+                            ->columnSpanFull()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('evolucion')
+                            ->required()
+                            ->columnSpan(1),
+                        Forms\Components\TextArea::make('evolucion_desc')
+                            ->required()
+                            ->label('Evolución descripción')
+                            ->columnSpanFull()
+                            ->maxLength(255),
+                        Forms\Components\DateTimePicker::make('fecha_hora_alta')
+                            ->required()
+                            ->columnSpan(1),
+                        Forms\Components\TextArea::make('observaciones')
+                            ->maxLength(255)
+                            ->columnSpanFull()
+                            ->default(null),
+                    ]),
+
             ]);
     }
 
