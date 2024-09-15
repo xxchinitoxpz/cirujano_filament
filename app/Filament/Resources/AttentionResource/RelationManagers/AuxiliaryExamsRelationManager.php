@@ -231,9 +231,9 @@ class AuxiliaryExamsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('EL_hemograma_completo')
+            ->recordTitleAttribute('ghgh')
             ->columns([
-                Tables\Columns\TextColumn::make('EL_hemograma_completo'),
+                Tables\Columns\TextColumn::make('id'),
             ])
             ->filters([
                 //

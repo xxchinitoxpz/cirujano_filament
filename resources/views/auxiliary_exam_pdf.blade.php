@@ -75,7 +75,8 @@
         }
 
         .signature img {
-            width: 60px; /* Ajusta el tamaño de la firma según sea necesario */
+            width: 60px;
+            /* Ajusta el tamaño de la firma según sea necesario */
             height: auto;
         }
     </style>
@@ -98,7 +99,8 @@
                         <p><strong>Paciente:</strong> {{ $exam->attention->appointment->patient->name }} <span
                                 style="float: right;"><strong>DNI N°:</strong>
                                 {{ $exam->attention->appointment->patient->DNI }}</span></p>
-                        <p><strong>Edad:</strong> {{ \Carbon\Carbon::parse($exam->attention->appointment->patient->birthdate)->age }}
+                        <p><strong>Edad:</strong>
+                            {{ \Carbon\Carbon::parse($exam->attention->appointment->patient->birthdate)->age }}
                             años</p>
                         <p><strong>Día Diagnóstico:</strong></p>
                         <p>Rp/:</p>
@@ -129,7 +131,70 @@
                             <label>Plaquetas</label>
                             <input type="checkbox" {{ $exam->EL_plaquetas ? 'checked' : '' }}>
                         </div>
-                        <!-- Agregar más exámenes de laboratorio según corresponda -->
+                        <div>
+                            <label>Glucosa</label>
+                            <input type="checkbox" {{ $exam->EL_glucosa ? 'checked' : '' }}>
+                            <label>Urea</label>
+                            <input type="checkbox" {{ $exam->EL_urea ? 'checked' : '' }}>
+                            <label>Creatinina</label>
+                            <input type="checkbox" {{ $exam->EL_creatinina ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Perfil hepatico completo</label>
+                            <input type="checkbox" {{ $exam->EL_perfil_hepetico_completo ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>TGO</label>
+                            <input type="checkbox" {{ $exam->EL_TGO ? 'checked' : '' }}>
+                            <label>TGP</label>
+                            <input type="checkbox" {{ $exam->EL_TGP ? 'checked' : '' }}>
+                            <label>BT</label>
+                            <input type="checkbox" {{ $exam->EL_BT ? 'checked' : '' }}>
+                            <label>BD</label>
+                            <input type="checkbox" {{ $exam->EL_BD ? 'checked' : '' }}>
+                            <label>BI</label>
+                            <input type="checkbox" {{ $exam->EL_BI ? 'checked' : '' }}>
+                            <label>Fosfata alcalina</label>
+                            <input type="checkbox" {{ $exam->EL_fosfatasa_alcalina ? 'checked' : '' }}>
+                            <label>GGT</label>
+                            <input type="checkbox" {{ $exam->EL_GGI ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Perfil luptico completo</label>
+                            <input type="checkbox" {{ $exam->EL_perfil_updico_completo ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Colesterol totaL</label>
+                            <input type="checkbox" {{ $exam->EL_coresterol_total ? 'checked' : '' }}>
+                            <label>Trigliceridos</label>
+                            <input type="checkbox" {{ $exam->EL_trigliceridos ? 'checked' : '' }}>
+                            <label>HDL</label>
+                            <input type="checkbox" {{ $exam->EL_HDL ? 'checked' : '' }}>
+                            <label>LDL</label>
+                            <input type="checkbox" {{ $exam->EL_LDL ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Perfil tiroideo completo</label>
+                            <input type="checkbox" {{ $exam->EL_perfil_tiroideo_completo ? 'checked' : '' }}>
+                        </div>
+
+                        <div>
+                            <label>TSH</label>
+                            <input type="checkbox" {{ $exam->EL_TSH ? 'checked' : '' }}>
+                            <label>T3</label>
+                            <input type="checkbox" {{ $exam->EL_T3 ? 'checked' : '' }}>
+                            <label>T3 Total </label>
+                            <input type="checkbox" {{ $exam->EL_T3_total ? 'checked' : '' }}>
+                            <label>T3 Libre</label>
+                            <input type="checkbox" {{ $exam->EL_T3_libre ? 'checked' : '' }}>
+                            <label>Triyodotironina</label>
+                            <input type="checkbox" {{ $exam->EL_triyodotironina ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Examen completa de orina</label>
+                            <input type="checkbox" {{ $exam->EL_examen_completo_orina ? 'checked' : '' }}>
+                        </div>
+                        <!--  -->
 
                         <!-- Riesgo Preoperatorio -->
                         <h5 class="section-title">RIESGO PRE OPERATORIO</h5>
@@ -141,6 +206,34 @@
                             <label>TC, TS</label>
                             <input type="checkbox" {{ $exam->RPO_TC_TS ? 'checked' : '' }}>
                         </div>
+                        <div>
+                            <label>Glucosa</label>
+                            <input type="checkbox" {{ $exam->RPO_glucosa ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Urea</label>
+                            <input type="checkbox" {{ $exam->RPO_urea ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Creatinia</label>
+                            <input type="checkbox" {{ $exam->RPO_creatinia ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Perfil hepatico</label>
+                            <input type="checkbox" {{ $exam->RPO_perfil_hepatico ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>HIV</label>
+                            <input type="checkbox" {{ $exam->RPO_HIV ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>VDRL</label>
+                            <input type="checkbox" {{ $exam->RPO_VDRL ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            <label>Marcadores hepatitis</label>
+                            <input type="checkbox" {{ $exam->RPO_marcadores_hepatitis ? 'checked' : '' }}>
+                        </div>
                     </td>
 
                     <td style="background-color: blue">
@@ -148,15 +241,18 @@
                         <h5 class="section-title">IMÁGENES: RADIOLÓGICOS</h5>
                         <div>
                             <label>Radiografía de Tórax Antero-post Postero-ant</label>
-                            <input type="checkbox" {{ $exam->R_radiografia_torax_antero_post_postero_ant ? 'checked' : '' }}>
+                            <input type="checkbox"
+                                {{ $exam->R_radiografia_torax_antero_post_postero_ant ? 'checked' : '' }}>
                         </div>
                         <div>
                             <label>Radiografía Tórax Lateral Derecha Izquierda</label>
-                            <input type="checkbox" {{ $exam->R_radiografia_torax_lateral_derecha_izquierda ? 'checked' : '' }}>
+                            <input type="checkbox"
+                                {{ $exam->R_radiografia_torax_lateral_derecha_izquierda ? 'checked' : '' }}>
                         </div>
                         <div>
                             <label>Radiografía Simple de Abdomen de Pie Decúbito</label>
-                            <input type="checkbox" {{ $exam->R_radiografia_simple_abdomen_pie_decubito ? 'checked' : '' }}>
+                            <input type="checkbox"
+                                {{ $exam->R_radiografia_simple_abdomen_pie_decubito ? 'checked' : '' }}>
                         </div>
 
                         <!-- Ultrasonidos -->
@@ -169,7 +265,8 @@
                         </div>
                         <div>
                             <label>Pared abdominal anterior</label>
-                            <input type="checkbox" {{ $exam->U_ecografia_partes_blandas_pared_abdominal_anterior ? 'checked' : '' }}>
+                            <input type="checkbox"
+                                {{ $exam->U_ecografia_partes_blandas_pared_abdominal_anterior ? 'checked' : '' }}>
                         </div>
 
                         <!-- Tomografía Axial Computarizada -->
@@ -192,7 +289,8 @@
                         <div class="footer">
                             <span>Fecha: {{ date('d/m/Y') }}</span>
                             <div class="signature">
-                                <img src="{{ public_path('storage/' . $exam->attention->doctor->stamp_image) }}" alt="Firma del Doctor">
+                                <img src="{{ public_path('storage/' . $exam->attention->doctor->stamp_image) }}"
+                                    alt="Firma del Doctor">
                             </div>
                         </div>
                     </td>
