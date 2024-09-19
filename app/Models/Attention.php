@@ -46,4 +46,9 @@ class Attention extends Model
     {
         return $this->hasMany(AuxiliaryExam::class, 'attention_id');
     }
+
+    public function recipe()
+    {
+        return $this->hasMany(Recipe::class);
+    }
 }

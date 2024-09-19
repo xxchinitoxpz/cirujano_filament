@@ -128,7 +128,11 @@
         <p><strong>DNI:</strong> {{ $attention->appointment->patient->DNI }}</p>
         <p><strong>Fecha de nacimiento:</strong>
             {{ \Carbon\Carbon::parse($attention->appointment->patient->birthdate)->format('d/m/Y') }}</p>
-        <p><strong>Edad:</strong> {{ \Carbon\Carbon::parse($attention->appointment->patient->birthdate)->age }} años</p>
+        <p><strong>Edad:</strong>
+            {{ intval(\Carbon\Carbon::parse($attention->appointment->patient->birthdate)->diffInYears(\Carbon\Carbon::parse($attention->created_at))) }}
+            años
+        </p>
+
         <p><strong>Teléfono móvil:</strong> {{ $attention->appointment->patient->phone }}</p>
     </div>
 

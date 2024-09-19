@@ -6,6 +6,7 @@ use App\Filament\Resources\AttentionResource\Pages;
 use App\Filament\Resources\AttentionResource\RelationManagers;
 use App\Filament\Resources\AttentionResource\RelationManagers\AuxiliaryExamsRelationManager;
 use App\Filament\Resources\AttentionResource\RelationManagers\PatientExamsRelationManager;
+use App\Filament\Resources\AttentionResource\RelationManagers\RecipeRelationManager;
 use App\Models\Appointment;
 use App\Models\Attention;
 use Filament\Forms;
@@ -246,7 +247,8 @@ class AttentionResource extends Resource
     {
         return [
             PatientExamsRelationManager::class,
-            AuxiliaryExamsRelationManager::class
+            AuxiliaryExamsRelationManager::class,
+            RecipeRelationManager::class
         ];
     }
 

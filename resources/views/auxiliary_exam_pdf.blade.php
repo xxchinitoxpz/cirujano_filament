@@ -49,7 +49,7 @@
             font-weight: bold;
             margin: 10px 0 5px;
             font-size: 12px;
-            text-align: center;
+            text-align: left;
         }
 
         .checkbox {
@@ -66,7 +66,7 @@
         }
 
         .footer {
-            margin-top: 120px;
+            margin-top: 20px;
         }
 
         .signature {
@@ -75,7 +75,7 @@
         }
 
         .signature img {
-            width: 60px;
+            width: 100px;
             /* Ajusta el tamaño de la firma según sea necesario */
             height: auto;
         }
@@ -93,7 +93,7 @@
         }
 
         .small-input {
-            transform: scale(0.7);
+            transform: scale(0.9);
             margin: 0;
         }
     </style>
@@ -116,111 +116,117 @@
                         <p>
                             <strong>Paciente:</strong> {{ $exam->attention->appointment->patient->name }}
 
-                            <strong>DNI N°:</strong>
+                            <strong style="margin-left: 20px">DNI N°:</strong>
                             {{ $exam->attention->appointment->patient->DNI }}
-                            <strong>Edad:</strong>
-                            {{ \Carbon\Carbon::parse($exam->attention->appointment->patient->birthdate)->age }}
+                            <strong style="margin-left: 20px">Edad:</strong>
+                            {{ floor(\Carbon\Carbon::parse($exam->attention->appointment->patient->birthdate)->diffInYears(\Carbon\Carbon::parse($exam->created_at))) }}
                             años
 
                         </p>
                         <!-- Exámenes de Laboratorio -->
                         <h5 class="section-title">EXÁMENES DE LABORATORIO</h5>
                         <div class="input-container">
-                            <label class="small-label">Hemograma completo</label>
+                            <label class="small-label">Hemograma completo&nbsp;
+                                ------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_hemograma_completo ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Perfil de coagulación completo</label>
+                            <label class="small-label">Perfil de coagulación completo&nbsp;
+                                -------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_perfil_coagulacion_completo ? 'checked' : '' }}>
                         </div>
-                        <div class="input-container">
-                            <label class="small-label">TC</label>
-                            <input type="checkbox" class="small-input" {{ $exam->EL_TC ? 'checked' : '' }}>
-                            <label class="small-label" style="margin-left: 10px;">TS</label>
-                            <input type="checkbox" class="small-input" {{ $exam->EL_TS ? 'checked' : '' }}>
+                        <div style="margin-left: 20px" class="input-container">
+                            <label class="small-label">TC<label>
+                                    <input type="checkbox" class="small-input" {{ $exam->EL_TC ? 'checked' : '' }}>
+                                    <label style="margin-left: 10px" class="small-label"
+                                        style="margin-left: 10px;">TS</label>
+                                    <input type="checkbox" class="small-input" {{ $exam->EL_TS ? 'checked' : '' }}>
+                                    <label style="margin-left: 10px" class="small-label">Tiempo de protrombina</label>
+                                    <input type="checkbox" class="small-input"
+                                        {{ $exam->EL_tiempo_protrombina ? 'checked' : '' }}>
+                                    <label style="margin-left: 10px" class="small-label"
+                                        style="margin-left: 10px;">Tiempo de tromboplastina
+                                        parcial</label>
+                                    <input type="checkbox" class="small-input"
+                                        {{ $exam->EL_tiempo_tromboplastina_parcial ? 'checked' : '' }}>
                         </div>
-                        <div class="input-container">
-                            <label class="small-label">Tiempo de protrombina</label>
-                            <input type="checkbox" class="small-input"
-                                {{ $exam->EL_tiempo_protrombina ? 'checked' : '' }}>
-                            <label class="small-label" style="margin-left: 10px;">Tiempo de tromboplastina
-                                parcial</label>
-                            <input type="checkbox" class="small-input"
-                                {{ $exam->EL_tiempo_tromboplastina_parcial ? 'checked' : '' }}>
-                        </div>
-                        <div class="input-container">
+                        <div style="margin-left: 20px" class="input-container">
                             <label class="small-label">Plaquetas</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_plaquetas ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
                             <label class="small-label">Glucosa</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_glucosa ? 'checked' : '' }}>
-                            <label class="small-label">Urea</label>
+                            <label style="margin-left: 40px" class="small-label">Urea</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_urea ? 'checked' : '' }}>
-                            <label class="small-label">Creatinina</label>
+                            <label style="margin-left: 40px" class="small-label">Creatinina</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_creatinina ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Perfil hepatico completo</label>
+                            <label class="small-label">Perfil hepatico completo
+                                ----------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_perfil_hepetico_completo ? 'checked' : '' }}>
                         </div>
-                        <div class="input-container">
+                        <div style="margin-left: 20px" class="input-container">
                             <label class="small-label">TGO</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_TGO ? 'checked' : '' }}>
-                            <label class="small-label">TGP</label>
+                            <label style="margin-left: 20px" class="small-label">TGP</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_TGP ? 'checked' : '' }}>
-                            <label class="small-label">BT</label>
+                            <label style="margin-left: 20px" class="small-label">BT</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_BT ? 'checked' : '' }}>
-                            <label class="small-label">BD</label>
+                            <label style="margin-left: 20px" class="small-label">BD</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_BD ? 'checked' : '' }}>
-                            <label class="small-label">BI</label>
+                            <label style="margin-left: 20px" class="small-label">BI</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_BI ? 'checked' : '' }}>
-                            <label class="small-label">Fosfata alcalina</label>
+                            <label style="margin-left: 20px" class="small-label">Fosfata alcalina</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_fosfatasa_alcalina ? 'checked' : '' }}>
-                            <label class="small-label">GGT</label>
+                            <label style="margin-left: 20px" class="small-label">GGT</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_GGI ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Perfil luptico completo</label>
+                            <label class="small-label">Perfil luptico completo
+                                -------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_perfil_updico_completo ? 'checked' : '' }}>
                         </div>
-                        <div class="input-container">
+                        <div style="margin-left: 20px" class="input-container">
                             <label class="small-label">Colesterol total</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_coresterol_total ? 'checked' : '' }}>
-                            <label class="small-label">Trigliceridos</label>
+                            <label style="margin-left: 20px" class="small-label">Trigliceridos</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_trigliceridos ? 'checked' : '' }}>
-                            <label class="small-label">HDL</label>
+                            <label style="margin-left: 20px" class="small-label">HDL</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_HDL ? 'checked' : '' }}>
-                            <label class="small-label">LDL</label>
+                            <label style="margin-left: 20px" class="small-label">LDL</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_LDL ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Perfil tiroideo completo</label>
+                            <label class="small-label">Perfil tiroideo completo
+                                ------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_perfil_tiroideo_completo ? 'checked' : '' }}>
                         </div>
 
-                        <div class="input-container">
+                        <div style="margin-left: 20px" class="input-container">
                             <label class="small-label">TSH</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_TSH ? 'checked' : '' }}>
-                            <label class="small-label">T3</label>
+                            <label style="margin-left: 20px" class="small-label">T3</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_T3 ? 'checked' : '' }}>
-                            <label class="small-label">T3 Total</label>
+                            <label style="margin-left: 20px" class="small-label">T3 Total</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_T3_total ? 'checked' : '' }}>
-                            <label class="small-label">T3 Libre</label>
+                            <label style="margin-left: 20px" class="small-label">T3 Libre</label>
                             <input type="checkbox" class="small-input" {{ $exam->EL_T3_libre ? 'checked' : '' }}>
-                            <label class="small-label">Triyodotironina</label>
+                            <label style="margin-left: 20px" class="small-label">Triyodotironina</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_triyodotironina ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Examen completo de orina</label>
+                            <label class="small-label">Examen completo de orina
+                                -------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->EL_examen_completo_orina ? 'checked' : '' }}>
                         </div>
@@ -229,97 +235,190 @@
                         <!-- Riesgo Preoperatorio -->
                         <h5 class="section-title">RIESGO PRE OPERATORIO</h5>
                         <div class="input-container">
-                            <label class="small-label">Hemograma completo</label>
+                            <label class="small-label">Hemograma completo
+                                -------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->RPO_hemograma_completo ? 'checked' : '' }}>
-                            <label class="small-label">TC, TS</label>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">TC, TS
+                                ---------------------------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input" {{ $exam->RPO_TC_TS ? 'checked' : '' }}>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Glucosa
+                                --------------------------------------------------------------------------------------------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input" {{ $exam->RPO_glucosa ? 'checked' : '' }}>
 
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Glucosa</label>
-                            <input type="checkbox" class="small-input" {{ $exam->RPO_glucosa ? 'checked' : '' }}>
-                            <label class="small-label">Urea</label>
+                            <label class="small-label">Urea
+                                -------------------------------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input" {{ $exam->RPO_urea ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Creatinina</label>
+                            <label class="small-label">Creatinina
+                                ------------------------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input" {{ $exam->RPO_creatinia ? 'checked' : '' }}>
-                            <label class="small-label">Perfil hepatico</label>
+
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">HIV
+                                -----------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input" {{ $exam->RPO_HIV ? 'checked' : '' }}>
+                            <label style="margin-left: 20px" class="small-label">Perfil hepatico
+                                ----------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->RPO_perfil_hepatico ? 'checked' : '' }}>
                         </div>
-                        <div class="input-container">
-                            <label class="small-label">HIV</label>
-                            <input type="checkbox" class="small-input" {{ $exam->RPO_HIV ? 'checked' : '' }}>
-                            <label class="small-label">VDRL</label>
-                            <input type="checkbox" class="small-input" {{ $exam->RPO_VDRL ? 'checked' : '' }}>
-                        </div>
 
                         <div class="input-container">
-                            <label class="small-label">Marcadores hepatitis</label>
+                            <label class="small-label">Marcadores hepatitis
+                                ------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->RPO_marcadores_hepatitis ? 'checked' : '' }}>
+                            <label style="margin-left: 20px"
+                                class="small-label">VDRL----------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input" {{ $exam->RPO_VDRL ? 'checked' : '' }}>
                         </div>
                     </td>
 
-                    <td style="background-color: blue">
+                    <td>
                         <!-- Imágenes y Radiológicos -->
-                        <h5 class="section-title">IMÁGENES: RADIOLÓGICOS</h5>
+                        <h5 class="section-title">IMÁGENES</h5>
+                        <h5 class="section-title">RADIOLÓGICOS</h5>
                         <div class="input-container">
-                            <label class="small-label">Radiografía de Tórax Antero-post Postero-ant</label>
+                            <label class="small-label">Radiografía de Tórax Antero-post Postero-ant
+                                --------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->R_radiografia_torax_antero_post_postero_ant ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Radiografía Tórax Lateral Derecha Izquierda</label>
+                            <label class="small-label">Radiografía Tórax Lateral Derecha Izquierda
+                                ---------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->R_radiografia_torax_lateral_derecha_izquierda ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
-                            <label class="small-label">Radiografía Simple de Abdomen de Pie Decúbito</label>
+                            <label class="small-label">Radiografía Simple de Abdomen de Pie Decúbito
+                                ---------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->R_radiografia_simple_abdomen_pie_decubito ? 'checked' : '' }}>
                         </div>
-
+                        <div class="input-container">
+                            <label class="small-label">Radiografia con contraste de abdomen
+                                -----------------------------------------------------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->R_radiografia_contraste_abdomen ? 'checked' : '' }}>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Radiografia doble contraste de abdomen
+                                ---------------------------------------------------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->R_radiografia_doble_contraste_abdomen ? 'checked' : '' }}>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Otras: {{ $exam->R_otras }}</label>
+                        </div>
                         <!-- Ultrasonidos -->
                         <h5 class="section-title">ULTRASONIDOS</h5>
                         <div class="input-container">
-                            <label class="small-label">Ecografía Abdomen Superior</label>
+                            <label class="small-label">Ecografía Abdomen</label>
+                        </div>
+                        <div style="margin-left: 20px" class="input-container">
+                            <label class="small-label">Superior.........</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->U_ecografia_abdomen_superior ? 'checked' : '' }}>
-                            <label class="small-label" style="margin-left: 10px;">Inferior</label>
+                            <label class="small-label" style="margin-left: 10px;">Inferior.........</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->U_ecografia_abdomen_inferior ? 'checked' : '' }}>
                         </div>
                         <div class="input-container">
+                            <label class="small-label">Ecografía partes blandas</label>
+                        </div>
+                        <div style="margin-left: 20px"class="input-container">
                             <label class="small-label">Pared abdominal anterior</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->U_ecografia_partes_blandas_pared_abdominal_anterior ? 'checked' : '' }}>
+                        </div>
+                        <div style="margin-left: 20px" class="input-container">
+                            <label class="small-label">Especificar:
+                                {{ $exam->U_ecografia_partes_blandas_especificar }}</label>
+                        </div>
+                        <div style="margin-left: 20px" class="input-container">
+                            <label class="small-label">Region inguinal</label>
+                            <label style="margin-left: 20px" class="small-label">Derecha.........</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->U_region_inguinal_derecha ? 'checked' : '' }}>
+                            <label style="margin-left: 20px" class="small-label"
+                                style="margin-left: 10px;">Izquierda.........</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->U_region_inguinal_izquierda ? 'checked' : '' }}>
+
+                        </div>
+                        <div style="margin-left: 20px" class="input-container">
+                            <label class="small-label">Otras:
+                                {{ $exam->U_otras }}</label>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Ecofast
+                                -----------------------------------------------------------------------------------------------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input" {{ $exam->U_ecofast ? 'checked' : '' }}>
                         </div>
 
                         <!-- Tomografía Axial Computarizada -->
                         <h5 class="section-title">TOMOGRAFÍA AXIAL COMPUTARIZADA</h5>
                         <div class="input-container">
-                            <label class="small-label">Tomografía de Abdomen Superior S/C</label>
+                            <label class="small-label">Tomografía de Abdomen Superior</label>
+                            <label class="small-label" style="margin-left: 10px;">S/C ---------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->TAC_abdomen_superior_SC ? 'checked' : '' }}>
-                            <label class="small-label" style="margin-left: 10px;">C/C</label>
+                            <label class="small-label" style="margin-left: 10px;">C/C ---------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->TAC_abdomen_superior_CC ? 'checked' : '' }}>
+                        </div>
+
+                        <div class="input-container">
+                            <label class="small-label">Tomografia toraco-abdominal</label>
+                            <label class="small-label" style="margin-left: 26px;">S/C ---------</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->TAC_toraco_abdominal_SC ? 'checked' : '' }}>
+                            <label class="small-label" style="margin-left: 10px;">C/C ---------</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->TAC_toraco_abdominal_CC ? 'checked' : '' }}>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Otras:
+                                {{ $exam->TAC_otras }}</label>
                         </div>
 
                         <!-- Resonancias Nucleares Magnéticas -->
                         <h5 class="section-title">RESONANCIAS NUCLEARES MAGNÉTICAS</h5>
                         <div class="input-container">
-                            <label class="small-label">Colangioresonancia</label>
+                            <label class="small-label">Colangioresonancia
+                                -------------------------------------------------------------------------------------------------------------------------------------------------</label>
                             <input type="checkbox" class="small-input"
                                 {{ $exam->RNM_colangioresonancia ? 'checked' : '' }}>
                         </div>
-
+                        <div class="input-container">
+                            <label class="small-label">Otras:
+                                {{ $exam->RNM_otras }}</label>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Riesgo cardiologico
+                                -------------------------------------------------------------------------------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->RNM_riesgo_cardiologico ? 'checked' : '' }}>
+                        </div>
+                        <div class="input-container">
+                            <label class="small-label">Riesgo neumologico
+                                -------------------------------------------------------------------------------------------------------------------------------------------------</label>
+                            <input type="checkbox" class="small-input"
+                                {{ $exam->RNM_riesgo_neumologico ? 'checked' : '' }}>
+                        </div>
                         <!-- Footer con Fecha y Firma del Médico -->
                         <div class="footer">
-                            <span>Fecha: {{ date('d/m/Y') }}</span>
+                            <span>Fecha: {{ \Carbon\Carbon::parse($exam->created_at)->format('d/m/Y') }}</span>
                             <div class="signature">
                                 <img src="{{ public_path('storage/' . $exam->attention->doctor->stamp_image) }}">
                             </div>

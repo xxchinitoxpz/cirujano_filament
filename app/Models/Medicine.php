@@ -14,4 +14,15 @@ class Medicine extends Model
         'description',
         'presentation',
     ];
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'medicine_recipes', 'medicine_id', 'recipe_id')
+                    ->withPivot('cantidad', 'dosis', 'periodo')
+                    ->withTimestamps();
+    } 
+
+    public function medicineRecipe()
+    {
+        return $this->hasMany(MedicineRecipe::class);
+    }
 }
