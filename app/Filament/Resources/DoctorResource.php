@@ -21,6 +21,7 @@ class DoctorResource extends Resource
     protected static ?string $navigationLabel = 'Medicos';
     protected static ?string $modelLabel = 'medico';
     protected static ?string $navigationGroup = 'Gestion de medicos';
+    protected static ?int $navigationSort = 7;
 
     public static function form(Form $form): Form
     {

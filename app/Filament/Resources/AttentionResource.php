@@ -27,6 +27,7 @@ class AttentionResource extends Resource
     protected static ?string $modelLabel = 'historia clinica';
     protected static ?string $navigationGroup = 'Gestion de historias clinicas';
 
+    protected static ?int $navigationSort = 4;
     public static function form(Form $form): Form
     {
         return $form

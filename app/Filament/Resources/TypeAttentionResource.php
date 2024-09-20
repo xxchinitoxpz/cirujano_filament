@@ -21,7 +21,7 @@ class TypeAttentionResource extends Resource
     protected static ?string $navigationLabel = 'Procedimientos';
     protected static ?string $modelLabel = 'procedimiento';
     protected static ?string $navigationGroup = 'Gestion de procedimientos';
-
+    protected static ?int $navigationSort = 9;
     public static function form(Form $form): Form
     {
         return $form
