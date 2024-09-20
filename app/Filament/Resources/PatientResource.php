@@ -57,21 +57,27 @@ class PatientResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('DNI')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('birthdate')
+                    ->translateLabel()
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
+                    ->translateLabel()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
+                    ->translateLabel()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([

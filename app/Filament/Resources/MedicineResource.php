@@ -53,16 +53,21 @@ class MedicineResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('medicine')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('presentation')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->translateLabel()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->translateLabel()
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

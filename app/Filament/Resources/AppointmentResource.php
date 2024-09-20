@@ -99,18 +99,21 @@ class AppointmentResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('patient.name')
+                    ->searchable()
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('typeAttention.type_attention')
+                    ->searchable()
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('date')
                     ->date()
+                    ->translateLabel()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('hour'),
+                Tables\Columns\TextColumn::make('hour')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('state')
+                    ->translateLabel()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('patient_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('type_attention_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

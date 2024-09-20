@@ -36,7 +36,7 @@ class DoctorResource extends Resource
                             ->translateLabel()
                             ->maxLength(255),
                         Forms\Components\Select::make('user_id')
-                        ->relationship(name: 'user', titleAttribute: 'name')
+                            ->relationship(name: 'user', titleAttribute: 'name')
                             ->required()
                             ->translateLabel(),
                         Forms\Components\TextInput::make('CMP')
@@ -67,21 +67,27 @@ class DoctorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('CMP')
+                    ->translateLabel()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('RNE')
+                    ->translateLabel()
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('stamp_image'),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\ImageColumn::make('stamp_image')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('user.name')
+
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
+                    ->translateLabel()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
+                    ->translateLabel()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
