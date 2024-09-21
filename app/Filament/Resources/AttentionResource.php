@@ -17,6 +17,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Pages\Page;
+
 
 class AttentionResource extends Resource
 {
@@ -28,6 +30,7 @@ class AttentionResource extends Resource
     protected static ?string $navigationGroup = 'Gestion de historias clinicas';
 
     protected static ?int $navigationSort = 4;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -39,15 +42,24 @@ class AttentionResource extends Resource
                             ->required()
                             ->label('Cita')
                             ->live()
-                            ->options(
-                                Appointment::where('state', 'En proceso')
-                                    ->get()
+                            ->options(function (callable $get, Page $livewire) {
+                                // Si estamos creando, solo mostrar citas "En proceso"
+                                if ($livewire instanceof Pages\CreateAttention) {
+                                    return Appointment::where('state', 'En proceso')
+                                        ->get()
+                                        ->mapWithKeys(function (Appointment $appointment) {
+                                            $patientName = $appointment->patient->name;
+                                            return [$appointment->id => sprintf('%s | %s | %s - %s', $patientName, $appointment->typeAttention->type_attention, $appointment->date, $appointment->hour)];
+                                        });
+                                }
+                                // Si estamos editando, mostrar todas las citas
+                                return Appointment::all()
                                     ->mapWithKeys(function (Appointment $appointment) {
                                         $patientName = $appointment->patient->name;
                                         return [$appointment->id => sprintf('%s | %s | %s - %s', $patientName, $appointment->typeAttention->type_attention, $appointment->date, $appointment->hour)];
-                                    })
-                            )
-                            ->reactive() // Esto permite reaccionar a los cambios
+                                    });
+                            })
+                            ->reactive()
                             ->afterStateUpdated(function (Set $set, $state) {
 
                                 $appointment = Appointment::find($state);
@@ -151,7 +163,6 @@ class AttentionResource extends Resource
                             ->live()
                             ->readOnly(),
                     ]),
-                //->columnSpanFull()
                 Forms\Components\Section::make()
                     ->columns(7)
                     ->description('')

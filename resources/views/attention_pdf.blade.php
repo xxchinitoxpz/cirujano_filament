@@ -1,4 +1,3 @@
-<!-- resources/views/attention_pdf.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,6 +75,14 @@
         .signature p {
             margin: 5px 0 0;
         }
+
+        /* Nuevo estilo para el manejo de textos largos */
+        p {
+            word-wrap: break-word;
+            /* Rompe las palabras largas */
+            white-space: pre-wrap;
+            /* Mantiene los saltos de línea y espacios */
+        }
     </style>
 </head>
 
@@ -126,13 +133,8 @@
     <div class="patient-info">
         <p><strong>Apellidos y Nombres:</strong> {{ $attention->appointment->patient->name }}</p>
         <p><strong>DNI:</strong> {{ $attention->appointment->patient->DNI }}</p>
-        <p><strong>Fecha de nacimiento:</strong>
-            {{ \Carbon\Carbon::parse($attention->appointment->patient->birthdate)->format('d/m/Y') }}</p>
-        <p><strong>Edad:</strong>
-            {{ intval(\Carbon\Carbon::parse($attention->appointment->patient->birthdate)->diffInYears(\Carbon\Carbon::parse($attention->created_at))) }}
-            años
-        </p>
-
+        <p><strong>Fecha de nacimiento:</strong>{{ \Carbon\Carbon::parse($attention->appointment->patient->birthdate)->format('d/m/Y') }}</p>
+        <p><strong>Edad: </strong>{{ intval(\Carbon\Carbon::parse($attention->appointment->patient->birthdate)->diffInYears(\Carbon\Carbon::parse($attention->created_at))) }} años</p>
         <p><strong>Teléfono móvil:</strong> {{ $attention->appointment->patient->phone }}</p>
     </div>
 

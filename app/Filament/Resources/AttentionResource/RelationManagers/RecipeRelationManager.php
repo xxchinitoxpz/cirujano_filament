@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class RecipeRelationManager extends RelationManager
 {
     protected static string $relationship = 'recipe';
+    protected static ?string $modelLabel = 'receta';
+    protected static ?string $title = 'Recetas';
 
     public function form(Form $form): Form
     {

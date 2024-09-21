@@ -49,6 +49,10 @@ class ReportResource extends Resource
                             ->required()
                             ->maxLength(3),
                         Forms\Components\Select::make('sexo')
+                            ->options([
+                                'm' => 'Masculino',
+                                'f' => 'Femenino',
+                            ])
                             ->required(),
                     ]),
 
@@ -57,6 +61,10 @@ class ReportResource extends Resource
                     ->description('')
                     ->schema([
                         Forms\Components\Select::make('modalidad_atencion')
+                            ->options([
+                                'consultoria' => 'Consultoría',
+                                'emergencia' => 'Emergencia',
+                            ])
                             ->required(),
                         Forms\Components\DateTimePicker::make('fecha_hora_ingreso')
                             ->required(),
@@ -97,6 +105,10 @@ class ReportResource extends Resource
                             ->default(null),
                         Forms\Components\Select::make('tratamiento')
                             ->required()
+                            ->options([
+                                'quirurgico' => 'Quirurgico',
+                                'medico' => 'Medico',
+                            ])
                             ->columnSpan(1),
                         Forms\Components\TextArea::make('tratamiento_desc')
                             ->required()
@@ -105,6 +117,11 @@ class ReportResource extends Resource
                             ->maxLength(255),
                         Forms\Components\Select::make('evolucion')
                             ->required()
+                            ->options([
+                                'favorable' => 'Favorable',
+                                'desfavorable' => 'Desfavorable',
+                                'estacionaria' => 'Estacionaria',
+                            ])
                             ->columnSpan(1),
                         Forms\Components\TextArea::make('evolucion_desc')
                             ->required()

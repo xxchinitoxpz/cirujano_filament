@@ -33,43 +33,24 @@ class AppointmentResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Informacion del paciente')
                     ->columns(1)
-                    ->description('')
                     ->schema([
                         Forms\Components\Select::make('patient_id')
                             ->relationship(name: 'patient', titleAttribute: 'name')
                             ->preload()
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('DNI')
-                                    ->required()
-                                    ->translateLabel()
-                                    ->maxLength(8),
-                                Forms\Components\TextInput::make('name')
-                                    ->required()
-                                    ->translateLabel()
-                                    ->maxLength(200),
-                                Forms\Components\TextInput::make('phone')
-                                    ->tel()
-                                    ->required()
-                                    ->translateLabel()
-                                    ->maxLength(9),
-                                Forms\Components\DatePicker::make('birthdate')
-                                    ->translateLabel()
-                                    ->required(),
-                            ])
-                            ->searchable()
-                            ->required()
                             ->translateLabel()
+                            ->required(),
                     ]),
                 Forms\Components\Section::make('Informacion de la cita')
                     ->columns(2)
-                    ->description('')
                     ->schema([
                         Forms\Components\Select::make('type_attention_id')
                             ->relationship(name: 'typeAttention', titleAttribute: 'type_attention')
                             ->preload()
-                            ->searchable()
-                            ->required()
                             ->translateLabel()
+                            ->live()
+                            ->reactive()
+                            ->required()
+                            ->searchable()
                             ->createOptionForm([
                                 Forms\Components\TextInput::make('type_attention')
                                     ->required()
@@ -80,10 +61,20 @@ class AppointmentResource extends Resource
                                     ->translateLabel()
                                     ->numeric()
                                     ->prefix('S/'),
-                            ]),
-                        Forms\Components\TextInput::make('price')
+                            ])
+                            ->afterStateUpdated(function (callable $set, $state) {
+                                // Obtener el precio del tipo de atención seleccionado
+                                if ($state) {
+                                    $price = \App\Models\TypeAttention::find($state)->price;
+                                    $set('price_', $price);
+                                }
+                            }),
+                        Forms\Components\TextInput::make('price_')
+                            ->label('Precio')
+                            ->live()
                             ->translateLabel()
-                            ->readOnly(),
+                            ->reactive()
+                            ->readOnly(), // El campo price debe ser de solo lectura
                         Forms\Components\DatePicker::make('date')
                             ->translateLabel()
                             ->required(),
@@ -91,9 +82,9 @@ class AppointmentResource extends Resource
                             ->translateLabel()
                             ->required(),
                     ]),
-
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
