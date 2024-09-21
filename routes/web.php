@@ -5,6 +5,7 @@ use App\Http\Controllers\ExamPdfController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RecipePdfController;
+use App\Http\Controllers\ReportPdfController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,3 +21,4 @@ Route::get('/exam/pdf/{id}', [ExamPdfController::class, 'showPdf'])->name('exam.
 
 Route::get('/recipe/{id}/pdf', [RecipeController::class, 'generatePdf'])->name('recipe.pdf');
 
+Route::get('/report/pdf/{id}', [ReportPdfController::class, 'generatePdfReport'])->name('informe.pdf');

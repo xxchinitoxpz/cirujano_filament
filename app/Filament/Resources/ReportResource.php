@@ -193,6 +193,13 @@ class ReportResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('Generar PDF')
+                    ->label('Generar PDF')
+                    ->icon('heroicon-o-document-download')
+                    ->action(function (Report $record) {
+                        return redirect()->route('informe.pdf', $record->id);  // Redirige a la ruta de generación de PDF
+                    })
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
