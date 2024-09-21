@@ -17,6 +17,6 @@ class ReportPdfController extends Controller
         $pdf = Pdf::loadView('report_pdf', compact('report'))->setPaper('a4', 'portrait');
 
         // Retornar el PDF para ser descargado o mostrado en el navegador
-        return $pdf->stream('informe_medico.pdf');
+        return $pdf->download('informe_medico_' .$report->id.'.pdf');
     }
 }

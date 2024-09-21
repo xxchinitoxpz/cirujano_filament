@@ -17,7 +17,7 @@ class TypeAttentionResource extends Resource
 {
     protected static ?string $model = TypeAttention::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-c-numbered-list';
     protected static ?string $navigationLabel = 'Procedimientos';
     protected static ?string $modelLabel = 'procedimiento';
     protected static ?string $navigationGroup = 'Gestion de procedimientos';

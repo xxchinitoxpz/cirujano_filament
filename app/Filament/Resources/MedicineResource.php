@@ -17,7 +17,7 @@ class MedicineResource extends Resource
 {
     protected static ?string $model = Medicine::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
     protected static ?string $navigationLabel = 'Medicamentos';
     protected static ?string $modelLabel = 'medicamento';
     protected static ?string $navigationGroup = 'Gestion de medicamentos';

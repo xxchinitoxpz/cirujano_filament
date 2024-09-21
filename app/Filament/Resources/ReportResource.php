@@ -17,7 +17,7 @@ class ReportResource extends Resource
 {
     protected static ?string $model = Report::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-inbox';
     protected static ?string $navigationLabel = 'Informes';
     protected static ?string $modelLabel = 'informe';
     protected static ?string $navigationGroup = 'Gestion de informes';
@@ -162,37 +162,9 @@ class ReportResource extends Resource
                 Tables\Columns\TextColumn::make('fecha_hora_egreso')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('resumen_hc')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('diagnostico_1')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('cie10_1')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('diagnostico_2')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('cie10_2')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('diagnostico_3')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('cie10_3')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('diagnostico_4')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('cie10_4')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tratamiento')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tratamiento_desc')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('evolucion')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('evolucion_desc')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('fecha_hora_alta')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('observaciones')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('doctor_id')
                     ->numeric()
                     ->sortable(),
@@ -212,7 +184,6 @@ class ReportResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('Generar PDF')
                     ->label('Generar PDF')
-                    ->icon('heroicon-o-document-download')
                     ->action(function (Report $record) {
                         return redirect()->route('informe.pdf', $record->id);  // Redirige a la ruta de generación de PDF
                     })

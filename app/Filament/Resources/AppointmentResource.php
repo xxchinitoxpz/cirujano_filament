@@ -20,7 +20,7 @@ class AppointmentResource extends Resource
 {
     protected static ?string $model = Appointment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-calendar-date-range';
     protected static ?string $navigationLabel = 'Citas';
     protected static ?string $modelLabel = 'cita';
     protected static ?string $navigationGroup = 'Gestion de citas';

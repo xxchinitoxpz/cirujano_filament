@@ -10,13 +10,19 @@
             font-size: 12px;
         }
 
-        .header-table, .info-table, .details-table, .cie-table {
+        .header-table,
+        .info-table,
+        .details-table,
+        .cie-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 10px;
         }
 
-        .header-table td, .info-table td, .details-table td, .cie-table td {
+        .header-table td,
+        .info-table td,
+        .details-table td,
+        .cie-table td {
             padding: 5px;
             vertical-align: top;
         }
@@ -61,7 +67,7 @@
                 <img src="{{ public_path('images/logo.jpg') }}" alt="Logo" class="logo">
             </td>
             <td style="width: 50%; text-align: right;">
-                <strong>Fecha de informe:</strong> {{ $report->created_at->format('d/m/Y') }}
+                <strong>Fecha de informe:</strong> {{ \Carbon\Carbon::parse($report->created_at)->format('d/m/Y') }}
             </td>
         </tr>
     </table>
@@ -77,9 +83,12 @@
     <!-- DNI, Edad y Sexo -->
     <table class="info-table">
         <tr>
-            <td><strong>Documento de identidad:</strong> {{ $report->dni }}</td>
-            <td><strong>Edad:</strong> {{ $report->edad }}</td>
-            <td><strong>Sexo:</strong> {{ $report->sexo }}</td>
+            <td style="text-align: left;"><strong>Documento de identidad:</strong> {{ $report->dni }}</td>
+            <td style="text-align: left;"><strong>Edad:</strong> {{ $report->edad }}</td>
+            <td style="text-align: right;">
+                <strong>Sexo:</strong>
+                {{ $report->sexo === 'm' ? 'Masculino' : ($report->sexo === 'f' ? 'Femenino' : 'Otro') }}
+            </td>
         </tr>
     </table>
 
@@ -93,8 +102,10 @@
     <!-- Fecha y Hora de Ingreso, Fecha y Hora de Egreso -->
     <table class="details-table">
         <tr>
-            <td><strong>Fecha y Hora de ingreso:</strong> {{ $report->fecha_hora_ingreso->format('d/m/Y H:i') }}</td>
-            <td><strong>Fecha y Hora de egreso:</strong> {{ $report->fecha_hora_egreso->format('d/m/Y H:i') }}</td>
+            <td style="text-align: left;"><strong>Fecha y Hora de ingreso:</strong>
+                {{ \Carbon\Carbon::parse($report->fecha_hora_ingreso)->format('d/m/Y H:i') }}</td>
+            <td style="text-align: right;"><strong>Fecha y Hora de egreso:</strong>
+                {{ \Carbon\Carbon::parse($report->fecha_hora_egreso)->format('d/m/Y H:i') }}</td>
         </tr>
     </table>
 
@@ -116,6 +127,18 @@
                 <td>{{ $report->diagnostico_1 }}</td>
                 <td>{{ $report->cie10_1 }}</td>
             </tr>
+            <tr>
+                <td>{{ $report->diagnostico_2 }}</td>
+                <td>{{ $report->cie10_2 }}</td>
+            </tr>
+            <tr>
+                <td>{{ $report->diagnostico_3 }}</td>
+                <td>{{ $report->cie10_3 }}</td>
+            </tr>
+            <tr>
+                <td>{{ $report->diagnostico_4 }}</td>
+                <td>{{ $report->cie10_4 }}</td>
+            </tr>
             <!-- Repite para los otros diagnósticos -->
         </table>
     </div>
@@ -134,7 +157,8 @@
 
     <!-- Fecha de alta -->
     <div class="discharge-section">
-        <h2 class="section-title">Fecha de alta: {{ $report->fecha_hora_alta->format('d/m/Y H:i') }}</h2>
+        <h2 class="section-title">Fecha de alta:
+            {{ \Carbon\Carbon::parse($report->fecha_hora_alta)->format('d/m/Y H:i') }}</h2>
     </div>
 
     <!-- Observaciones -->
@@ -142,7 +166,15 @@
         <h2 class="section-title">Observaciones:</h2>
         <p>{{ $report->observaciones }}</p>
     </div>
-
+    <!-- Firma del doctor -->
+    <div class="signature">
+        <table class="details-table">
+            <tr>
+                <td style="text-align: right;"><img src="{{ public_path('storage/' . $report->doctor->stamp_image) }}">
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 
 </html>

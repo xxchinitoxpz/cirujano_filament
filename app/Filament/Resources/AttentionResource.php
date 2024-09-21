@@ -24,7 +24,7 @@ class AttentionResource extends Resource
 {
     protected static ?string $model = Attention::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-clipboard-document-list';
     protected static ?string $navigationLabel = 'Historias clinicas';
     protected static ?string $modelLabel = 'historia clinica';
     protected static ?string $navigationGroup = 'Gestion de historias clinicas';
