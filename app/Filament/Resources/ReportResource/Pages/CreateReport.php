@@ -9,9 +9,12 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateReport extends CreateRecord
 {
     protected static string $resource = ReportResource::class;
+    protected function afterCreate(): void
+    {
+        $data['doctor_id'] = auth()->user()->doctor->id;
+    }
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-
         $data['doctor_id'] = auth()->user()->doctor->id;
         //dd($data);
         return $data;

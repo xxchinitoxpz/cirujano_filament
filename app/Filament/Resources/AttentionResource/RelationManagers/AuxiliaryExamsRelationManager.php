@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class AuxiliaryExamsRelationManager extends RelationManager
 {
     protected static string $relationship = 'auxiliaryExams';
+    protected static ?string $modelLabel = 'examen auxiliar';
+    protected static ?string $title = 'Examenes auxiliares';
 
     public function form(Form $form): Form
     {

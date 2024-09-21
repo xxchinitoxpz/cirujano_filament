@@ -33,7 +33,7 @@ class Report extends Model
         'evolucion_desc',
         'fecha_hora_alta',
         'observaciones',
-        'doctorsid'
+        'doctor_id'
     ];
 
     // Define the relationship with Doctor
