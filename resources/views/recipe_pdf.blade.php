@@ -45,14 +45,19 @@
             border: 1px solid #000;
         }
 
+        /* Nueva regla para el pie de página */
         .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
         }
 
+        /* Ajustar tamaño de la imagen de la firma */
         .footer img {
-            width: 60px;
+            width: 150px;  /* Ajusta este valor para aumentar o reducir el tamaño */
             height: auto;
         }
     </style>
@@ -75,9 +80,6 @@
             <td>
                 <p><strong>Paciente:</strong> {{ $recipe->attention->appointment->patient->name }} <strong>DNI:</strong> {{ $recipe->attention->appointment->patient->DNI }}</p>
                 <p><strong>Edad:</strong>  {{ floor(\Carbon\Carbon::parse($recipe->attention->appointment->patient->birthdate)->diffInYears(\Carbon\Carbon::parse($recipe->created_at))) }} años</p>
-
-               
-
             </td>
             <td>
                 <h4 class="section-title">INDICACIONES</h4>
@@ -111,9 +113,9 @@
     </table>
 
     <!-- Pie de página con la fecha y firma del médico -->
-    <div style="margin-top: 25px">
+    <div class="footer">
         <strong>Fecha:</strong> {{ \Carbon\Carbon::parse($recipe->created_at)->format('d/m/Y') }}
-        <img style="margin-left: 200px; width: 15%" src="{{ public_path('storage/' . $recipe->attention->doctor->stamp_image) }}">
+        <img style="margin-left: 250px" src="{{ public_path('storage/' . $recipe->attention->doctor->stamp_image) }}">
     </div>
 </body>
 </html>

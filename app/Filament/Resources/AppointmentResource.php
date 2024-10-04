@@ -38,7 +38,25 @@ class AppointmentResource extends Resource
                             ->relationship(name: 'patient', titleAttribute: 'name')
                             ->preload()
                             ->translateLabel()
-                            ->required(),
+                            ->required()
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('DNI')
+                                    ->required()
+                                    ->translateLabel()
+                                    ->maxLength(8),
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->translateLabel()
+                                    ->maxLength(200),
+                                Forms\Components\TextInput::make('phone')
+                                    ->tel()
+                                    ->required()
+                                    ->translateLabel()
+                                    ->maxLength(9),
+                                Forms\Components\DatePicker::make('birthdate')
+                                    ->translateLabel()
+                                    ->required(),
+                            ]),
                     ]),
                 Forms\Components\Section::make('Informacion de la cita')
                     ->columns(2)

@@ -43,7 +43,8 @@ class PatientExamsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                ->label('Cargar examen')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

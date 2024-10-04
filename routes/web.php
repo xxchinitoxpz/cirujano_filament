@@ -9,7 +9,8 @@ use App\Http\Controllers\ReportPdfController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/admin');
 });
 
 Route::get('/attention/{id}/pdf', [PdfController::class, 'generateAttentionPdf'])->name('attention.pdf');
