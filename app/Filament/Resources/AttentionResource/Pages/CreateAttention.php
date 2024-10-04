@@ -17,7 +17,8 @@ class CreateAttention extends CreateRecord
     }
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-
+        $data['state'] = 'Registrada';
+        $data['doctor_id'] = auth()->user()->doctor->id;
 
         //dd($data);
         $appointment = Appointment::find($data['appointment_id']);
