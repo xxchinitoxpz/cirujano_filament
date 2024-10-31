@@ -109,28 +109,31 @@ class AttentionResource extends Resource
                             }),
                     ]),
                 Forms\Components\Section::make('Signos vitales')
-                    ->columns(7)
+                    ->columns(8)
                     ->description('')
                     ->schema([
+                        Forms\Components\TextInput::make('pa')
+                            ->required()
+                            ->maxLength(20),
+                        Forms\Components\TextInput::make('fc')
+                            ->required()
+                            ->maxLength(20),
                         Forms\Components\TextInput::make('fr')
-                            ->required()
-                            ->maxLength(20),
-                        Forms\Components\TextInput::make('peso')
-                            ->required()
-                            ->maxLength(20),
-                        Forms\Components\TextInput::make('so2')
                             ->required()
                             ->maxLength(20),
                         Forms\Components\TextInput::make('temp')
                             ->required()
                             ->maxLength(20),
-                        Forms\Components\TextInput::make('pa')
+                        Forms\Components\TextInput::make('so2')
                             ->required()
                             ->maxLength(20),
                         Forms\Components\TextInput::make('talla')
                             ->required()
                             ->maxLength(20),
-                        Forms\Components\TextInput::make('fc')
+                        Forms\Components\TextInput::make('peso')
+                            ->required()
+                            ->maxLength(20),
+                        Forms\Components\TextInput::make('imc')
                             ->required()
                             ->maxLength(20),
                     ]),
@@ -163,32 +166,79 @@ class AttentionResource extends Resource
                             ->live()
                             ->readOnly(),
                     ]),
-                Forms\Components\Section::make()
-                    ->columns(7)
+                Forms\Components\Section::make('Antecedentes pesonales')
                     ->description('')
                     ->schema([
-                        Forms\Components\Textarea::make('antecedent')
+                        Forms\Components\Textarea::make('antecedent_medical')
                             ->required()
                             ->translateLabel()
                             ->columnSpanFull(),
-                        Forms\Components\Textarea::make('symptoms')
+                        Forms\Components\Textarea::make('antecedent_surgical')
                             ->translateLabel()
                             ->required()
                             ->columnSpanFull(),
-                        Forms\Components\Textarea::make('inconvenience')
-                            ->required()
-                            ->translateLabel()
-                            ->columnSpanFull(),
-                        Forms\Components\Textarea::make('diagnosis')
-                            ->required()
-                            ->translateLabel()
-                            ->columnSpanFull(),
-                        Forms\Components\Textarea::make('treatment')
+                        Forms\Components\Textarea::make('antecedent_allergies')
                             ->required()
                             ->translateLabel()
                             ->columnSpanFull(),
                     ]),
+                Forms\Components\Section::make('Antecedentes familiares')
+                    ->description('')
+                    ->schema([
+                        Forms\Components\Textarea::make('antecedent_family')
+                            ->required()
+                            ->translateLabel()
+                            ->columnSpanFull(),
+                    ]),
+                Forms\Components\Section::make('Enfermedad actual')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('sick_time')
+                            ->translateLabel()
+                            ->live()
+                            ->readOnly(),
+                        Forms\Components\Select::make('sick_time2')
+                            ->options([
+                                'Dia' => 'Dia',
+                                'Mes' => 'Mes',
+                                'Año' => 'Año',
+                            ])
+                            ->required()
+                            ->translateLabel(),
+                        Forms\Components\Select::make('start_form')
+                            ->options([
+                                'Inisidioso' => 'Inisidioso',
+                                'Progresivo' => 'Progresivo',
+                            ])
+                            ->required()
+                            ->translateLabel()
+                            ->columnSpanFull(),
+                        Forms\Components\Textarea::make('signs_symptoms')
+                            ->required()
+                            ->translateLabel()
+                            ->columnSpanFull(),
+                        Forms\Components\Textarea::make('chronological_account')
+                            ->required()
+                            ->translateLabel()
+                            ->columnSpanFull(),
+                    ]),
+                Forms\Components\Section::make('Examen clinico')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\Textarea::make('clinical_examination')
+                            ->required()
+                            ->translateLabel()
+                            ->columnSpanFull(),
 
+                    ]),
+                Forms\Components\Section::make('Plan de trabajo')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\Textarea::make('work_plan')
+                            ->required()
+                            ->translateLabel()
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 

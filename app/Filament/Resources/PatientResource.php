@@ -46,7 +46,25 @@ class PatientResource extends Resource
                         Forms\Components\DatePicker::make('birthdate')
                             ->translateLabel()
                             ->required(),
-
+                        Forms\Components\TextInput::make('direccion')
+                            ->required()
+                            ->translateLabel()
+                            ->maxLength(200),
+                        Forms\Components\TextInput::make('distrito')
+                            ->required()
+                            ->translateLabel()
+                            ->maxLength(200),
+                        Forms\Components\TextInput::make('provincia')
+                            ->required()
+                            ->translateLabel()
+                            ->maxLength(200),
+                        Forms\Components\Select::make('estado_civil')
+                            ->options([
+                                'Soltero' => 'Soltero',
+                                'Casado' => 'Casado',
+                                'Divorciado' => 'Divorciado',
+                            ])
+                            ->required(),
                     ])
 
             ]);
