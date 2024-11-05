@@ -14,6 +14,10 @@ class Patient extends Model
         'name',
         'phone',
         'birthdate',
+        'direccion',
+        'distrito',
+        'provincia',
+        'estado_civil',
     ];
 
     public function appointments()

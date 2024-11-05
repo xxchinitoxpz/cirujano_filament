@@ -23,3 +23,6 @@ Route::get('/exam/pdf/{id}', [ExamPdfController::class, 'showPdf'])->name('exam.
 Route::get('/recipe/{id}/pdf', [RecipeController::class, 'generatePdf'])->name('recipe.pdf');
 
 Route::get('/report/pdf/{id}', [ReportPdfController::class, 'generatePdfReport'])->name('informe.pdf');
+
+Route::get('/pdf', [PdfController::class, 'showPdf']);
+
