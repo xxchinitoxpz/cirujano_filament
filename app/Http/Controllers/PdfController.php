@@ -24,13 +24,11 @@ class PdfController extends Controller
 
     public function showPdf()
     {
-        // Datos para el PDF, podrías modificar esto dinámicamente
+        $attention = Attention::with('appointment.patient')->findOrFail(1);
         $data = ['title' => 'Mi PDF en tiempo real'];
 
-        // Generar PDF usando DomPDF
-        $pdf = PDF::loadView('pdf-view', $data);
+        $pdf = Pdf::loadView('pdf-view', compact('attention'));
 
-        // Mostrar PDF en el navegador sin descargarlo
         return $pdf->stream('document.pdf');
     }
 }
