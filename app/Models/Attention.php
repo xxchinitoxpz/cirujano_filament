@@ -31,6 +31,8 @@ class Attention extends Model
         'chronological_account',
         'clinical_examination',
         'work_plan',
+        'doctor_id',
+        'appointment_id'
     ];
 
     public function appointment()

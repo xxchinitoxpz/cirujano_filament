@@ -9,6 +9,7 @@ use App\Filament\Resources\AttentionResource\RelationManagers\PatientExamsRelati
 use App\Filament\Resources\AttentionResource\RelationManagers\RecipeRelationManager;
 use App\Models\Appointment;
 use App\Models\Attention;
+use App\Models\cie;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
@@ -195,8 +196,8 @@ class AttentionResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('sick_time')
                             ->translateLabel()
-                            ->live()
-                            ->readOnly(),
+                            ->required()
+                            ->live(),
                         Forms\Components\Select::make('sick_time2')
                             ->options([
                                 'Dia' => 'Dia',
@@ -207,8 +208,8 @@ class AttentionResource extends Resource
                             ->translateLabel(),
                         Forms\Components\Select::make('start_form')
                             ->options([
-                                'Inisidioso' => 'Inisidioso',
-                                'Progresivo' => 'Progresivo',
+                                TRUE => 'Inisidioso',
+                                FALSE => 'Progresivo',
                             ])
                             ->required()
                             ->translateLabel()
@@ -230,6 +231,22 @@ class AttentionResource extends Resource
                             ->translateLabel()
                             ->columnSpanFull(),
 
+                    ]),
+                    Forms\Components\Section::make('Diagnóstico')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\Select::make('CIE')
+                            ->preload()
+                            ->translateLabel()
+                            ->multiple()
+                            ->required()
+                            ->searchable()
+                            ->options(function () {
+                                return cie::all()->pluck('code', 'cie')
+                                    ->mapWithKeys(function ($code, $cie) {
+                                        return ["$code - $cie" => "$code - $cie"];
+                                    });
+                            }),
                     ]),
                 Forms\Components\Section::make('Plan de trabajo')
                     ->columns(2)

@@ -72,5 +72,17 @@
     "Diagnosis":"Diagnostico",
     "Treatment":"Tratamiento",
     "Inconvenience":"Molestias",
-    "Stamp image":"Sello y firma"
+    "Stamp image":"Sello y firma",
+    "Antecedent medical": "Medicos",
+    "Antecedent surgical" : "Quirurgicos",
+    "Antecedent allergies": "Alergias",
+    "Antecedent family": "Familiares",
+    "Sick time": "Tiempo de enfermedad",
+    "Sick time2": "Tiempo de enfermedad",
+    "Start form": "Forma de inicio",
+    "Signs symptoms": "Signos y sintomas",
+    "Chronological account": "Relato cronologico",
+    "Clinical examination": "Examen clinico",
+    "Work plan": "Plan de trabajo",
+    "C i e": "CIE"
 }
