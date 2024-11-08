@@ -189,9 +189,12 @@
         </span>
     </div>
 
-    <div>
-        <img src="{{ public_path('storage/' . $attention->doctor->stamp_image) }}">
+    <div style="position: relative; height: 200px;"> <!-- Ajusta la altura según necesites -->
+        <img src="{{ public_path('storage/' . $attention->doctor->stamp_image) }}"
+            style="width: 220px; height: auto; position: absolute; bottom: 0; right: 0;">
     </div>
+
+
 
 </body>
 
